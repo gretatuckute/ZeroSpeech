@@ -12,6 +12,12 @@ Pretrained weights for the 2019 English and Indonesian datasets can be found [he
 
 # Quick Start
 
+## Model activation extraction
+To extract model activations from multiple sound files, use convert.py. The configuration and pointers to pretrained weights can be found under /config/convert.yaml. Note that only model activations from the encoder are extracted.
+
+To run random network: In the convert.py script, it is possible to generate randomly permuted tensors for the VQ-VAE architecture (line 83). Set the variable rand_netw to True in the beginning of the script. The permuted architecture will be loaded in lines 95-103 and activations saved with an appended "_randnetw".
+
+
 ## Requirements
 
 1.  Ensure you have Python 3 and PyTorch 1.4 or greater.
