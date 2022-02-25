@@ -3,7 +3,7 @@ defaults:
     - preprocessing: default
     - model: default
 
-synthesis_list: ???
-in_dir: ???
-out_dir: ???
-checkpoint: ???
+synthesis_list: /Users/gt/Documents/GitHub/ZeroSpeech/datasets/2019/english/synthesis.json
+in_dir: /Users/gt/Documents/GitHub/aud-dnn/data/stimuli/165_natural_sounds_16kHz
+out_dir: /Users/gt/Documents/GitHub/ZeroSpeech/outdir
+checkpoint: /Users/gt/Documents/GitHub/ZeroSpeech/ckpt/model.ckpt-500000.pt

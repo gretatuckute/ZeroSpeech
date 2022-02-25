@@ -3,6 +3,6 @@ defaults:
     - preprocessing: default
     - model: default
 
-checkpoint: ???
-out_dir: ???
+checkpoint: /Users/gt/Documents/GitHub/ZeroSpeech/ckpt
+out_dir: /Users/gt/Documents/GitHub/ZeroSpeech/outdir
 save_auxiliary: False
