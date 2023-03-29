@@ -28,7 +28,7 @@ torch.cuda.manual_seed(0)
 
 speaker_id = 'S015'
 run_only_missing_files = False
-rand_netw = False
+rand_netw = True
 
 files = [f for f in os.listdir(DATADIR) if os.path.isfile(os.path.join(DATADIR, f))]
 wav_files_identifiers = [f for f in files if f.endswith('wav')]
