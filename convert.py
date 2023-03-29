@@ -28,7 +28,7 @@ torch.cuda.manual_seed(0)
 
 speaker_id = 'S015'
 run_only_missing_files = False
-rand_netw = True
+rand_netw = False
 
 files = [f for f in os.listdir(DATADIR) if os.path.isfile(os.path.join(DATADIR, f))]
 wav_files_identifiers = [f for f in files if f.endswith('wav')]
@@ -65,16 +65,17 @@ def convert(cfg):
         print('OBS! RANDOM NETWORK!')
     
         ## The following code was used to generate indices for random permutation ##
-        # d_rand_idx = {}  # create dict for storing the indices for random permutation
-        # for k, v in state_dict.items():
-        #     w = state_dict[k]
-        #     idx = torch.randperm(w.nelement())  # create random indices across all dimensions
-        #     d_rand_idx[k] = idx
-        #
-        # with open(os.path.join(ROOTDIR, 'ZeroSpeech2020_randnetw_indices.pkl'), 'wb') as f:
-        #     pickle.dump(d_rand_idx, f)
-    
-        d_rand_idx = pickle.load(open(os.path.join(ROOTDIR, 'ZeroSpeech2020_randnetw_indices.pkl'), 'rb'))
+        if not os.path.exists(os.path.join(ROOTDIR, 'ZeroSpeech2020_randnetw_indices.pkl')):
+            d_rand_idx = {}  # create dict for storing the indices for random permutation
+            for k, v in state_dict.items():
+                w = state_dict[k]
+                idx = torch.randperm(w.nelement())  # create random indices across all dimensions
+                d_rand_idx[k] = idx
+
+            with open(os.path.join(ROOTDIR, 'ZeroSpeech2020_randnetw_indices.pkl'), 'wb') as f:
+                pickle.dump(d_rand_idx, f)
+        else:
+            d_rand_idx = pickle.load(open(os.path.join(ROOTDIR, 'ZeroSpeech2020_randnetw_indices.pkl'), 'rb'))
     
         for k, v in state_dict.items():
             w = state_dict[k]
@@ -99,6 +100,7 @@ def convert(cfg):
 
     ### LOOP OVER AUDIO FILES ###
     for filename in tqdm(wav_files_paths):
+        print(filename)
         encoder.eval()
         decoder.eval()
         
